@@ -5,15 +5,17 @@ import { getSmurfs } from "../state/actionCreators";
 import SmurfForm from "./Form";
 import Header from "./Header";
 
-function App({ smurfs, getSmurfs }) {
+function App({ smurfs, getSmurfs, isFetching, error }) {
   useEffect(() => {
     getSmurfs();
   }, []);
 
   return (
     <div>
-      <Header/>
+      <Header />
       <SmurfForm />
+      {isFetching && <p>Loading…</p>}
+      {error && <p>{error}</p>}
       {smurfs.map(smurf => {
         return (
           <div key={smurf.id}>
@@ -30,7 +32,9 @@ function App({ smurfs, getSmurfs }) {
 function mapStateToProps(state) {
   console.log(state);
   return {
-    smurfs: state.smurfs
+    smurfs: state.smurfs,
+    isFetching: state.isFetching,
+    error: state.error
   };
 }
 //STEP-8 USE connect FROM react-redux to WRAP OUR COMPONENT

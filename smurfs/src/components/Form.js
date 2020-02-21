@@ -13,14 +13,15 @@ export function SmurfForm({ postSmurfs }) {
   };
   const handleSubmit = event => {
     event.preventDefault();
-    if (!smurfs.name || !smurfs.age || !smurfs.heigh) {
+    console.log(smurfs);
+    if (!smurfs.name || !smurfs.age || !smurfs.height) {
       return alert("!Please complete all the blanks boxes!");
     }
     postSmurfs(smurfs);
   };
   return (
     <form className="formContainer" onSubmit={handleSubmit}>
-        <p>Add a new Smurf</p>
+      <p>Add a new Smurf</p>
       <input
         type="text"
         name="name"
@@ -29,13 +30,13 @@ export function SmurfForm({ postSmurfs }) {
       />
       <input
         type="text"
-        name="name"
+        name="age"
         placeholder="How old is your Smurf?"
         onChange={handleChange}
       />
       <input
         type="text"
-        name="name"
+        name="height"
         placeholder="How tall is your Smurf?"
         onChange={handleChange}
       />
